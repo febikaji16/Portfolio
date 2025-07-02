@@ -316,7 +316,7 @@ export default function Portfolio() {
                   <h3 className="experience-title">Quality Analyst Intern</h3>
                   <p className="experience-company">HTIC Global, Kochi, Kerala</p>
                 </div>
-                <span className="experience-date green-badge">2022-2024</span>
+                <span className="experience-date green-badge">May 2024</span>
               </div>
               <ul className="experience-duties">
                 <li>Manual Testing of HRMS website</li>
