@@ -300,13 +300,13 @@ export default function Portfolio() {
             <div className="experience-card">
               <div className="experience-header">
                 <div className="experience-info">
-                  <h3 className="experience-title">Front-end Developer</h3>
+                  <h3 className="experience-title">Full Stack Developer</h3>
                   <p className="experience-company">CGI Inc, Bangalore</p>
                 </div>
                 <span className="experience-date blue-badge">May 2025</span>
               </div>
               <ul className="experience-duties">
-                <li>Front-end development of ASOP Dashboard</li>
+                <li>Full Stack Development of ASOP Dashboard</li>
               </ul>
             </div>
 
@@ -333,6 +333,12 @@ export default function Portfolio() {
             </h3>
             <div className="achievement-card">
               <p className="achievement-text">
+                <span className="achievement-highlight">Meritorious Scholarship</span> from Christ University for
+                outstanding academic performance (May 2024)
+              </p>
+            </div>
+            <div className="achievement-card1">
+              <p className="achievement-text1">
                 <span className="achievement-highlight">Meritorious Scholarship</span> from Christ University for
                 outstanding academic performance (May 2024)
               </p>

@@ -683,14 +683,13 @@ body {
   gap: 8px;
 }
 
-.achievement-card {
+.achievement-card,.achievement-card1 {
   background: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-.achievement-text {
+.achievement-text{
   color: #374151;
   font-size: 14px;
   line-height: 1.5;
@@ -720,7 +719,9 @@ body {
     font-size: 16px;
   }
 }
-
+.achievement-card1 {
+  margin-top: 20px;
+}
 /* Projects Section */
 .projects-section {
   padding: 60px 16px;
