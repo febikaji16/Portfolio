@@ -340,7 +340,7 @@ export default function Portfolio() {
             <div className="achievement-card1">
               <p className="achievement-text1">
                 <span className="achievement-highlight">Meritorious Scholarship</span> from Christ University for
-                outstanding academic performance (May 2024)
+                outstanding academic performance (May 2025)
               </p>
             </div>
           </div>
