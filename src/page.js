@@ -1,9 +1,11 @@
+"use client"
 
 import { useState } from "react"
-import Image from "./assets/photo.png"
 import "./portfolio.css"
+import Image from "./assets/photo.png"
 
 export default function Portfolio() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedProject, setSelectedProject] = useState(null)
 
   const projectDetails = {
@@ -141,6 +143,18 @@ export default function Portfolio() {
     },
   }
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+    setIsMenuOpen(false)
+  }
+
   const openModal = (projectId) => {
     setSelectedProject(projectId)
   }
@@ -148,28 +162,58 @@ export default function Portfolio() {
   const closeModal = () => {
     setSelectedProject(null)
   }
+
   return (
     <div className="portfolio-container">
       {/* Header */}
       <header className="header">
         <nav className="nav-container">
           <div className="nav-content">
-            <h1 className="nav-title">Febi K Aji</h1>
-            <div className="nav-links">
-              <a href="#about" className="nav-link">
-                About
-              </a>
-              <a href="#experience" className="nav-link">
-                Experience
-              </a>
-              <a href="#projects" className="nav-link">
-                Projects
-              </a>
-              <a href="#contact" className="nav-link">
-                Contact
-              </a>
+            <div className="logo">
+              <span className="logo-text">FK</span>
             </div>
+
+            {/* Desktop Navigation */}
+            <div className="nav-links desktop-nav">
+              <button onClick={() => scrollToSection("about")} className="nav-link">
+                About me
+              </button>
+              <button onClick={() => scrollToSection("experience")} className="nav-link">
+                Experience
+              </button>
+              <button onClick={() => scrollToSection("projects")} className="nav-link">
+                Projects
+              </button>
+              <button onClick={() => scrollToSection("contact")} className="nav-link contact-btn">
+                CONTACT ME
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button className="mobile-menu-btn" onClick={toggleMenu}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
           </div>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <div className="mobile-nav">
+              <button onClick={() => scrollToSection("about")} className="mobile-nav-link">
+                About me
+              </button>
+              <button onClick={() => scrollToSection("experience")} className="mobile-nav-link">
+                Experience
+              </button>
+              <button onClick={() => scrollToSection("projects")} className="mobile-nav-link">
+                Projects
+              </button>
+              <button onClick={() => scrollToSection("contact")} className="mobile-nav-link">
+                CONTACT ME
+              </button>
+            </div>
+          )}
         </nav>
       </header>
 
@@ -177,31 +221,35 @@ export default function Portfolio() {
       <section className="hero-section">
         <div className="container">
           <div className="hero-content">
+            <div className="hero-text">
+              <p className="hero-greeting">Hi, I am</p>
+              <h1 className="hero-name">Febi K Aji</h1>
+              <p className="hero-title">Computer Science Engineer & Cybersecurity Specialist</p>
+
+              <div className="hero-description">
+                <p>
+                  A motivated and detail-oriented Computer Science Engineering graduate with a strong foundation in
+                  programming, data structures, and problem-solving. Experienced in developing efficient software
+                  solutions and adept at leveraging modern technologies to deliver innovative results.
+                </p>
+                <div className="hero-buttons">
+                  <button onClick={() => scrollToSection("contact")} className="read-more-btn">
+                    GET IN TOUCH
+                  </button>
+                  <button onClick={() => scrollToSection("projects")} className="explore-btn">
+                    VIEW PROJECTS
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <div className="hero-image-container">
               <div className="hero-image">
                 <img
                   src={Image}
                   alt="Febi K Aji"
-                  fill
                   className="profile-image"
                 />
-              </div>
-            </div>
-            <div className="hero-text">
-              <h1 className="hero-title">Febi K Aji</h1>
-              <p className="hero-subtitle">Computer Science Engineer & Cybersecurity Specialist</p>
-              <p className="hero-description">
-                A motivated and detail-oriented Computer Science Engineering graduate with a strong foundation in
-                programming, data structures, and problem-solving. Experienced in developing efficient software
-                solutions and adept at leveraging modern technologies to deliver innovative results.
-              </p>
-              <div className="hero-buttons">
-                <a href="#contact" className="btn btn-primary">
-                  Get In Touch
-                </a>
-                <a href="#projects" className="btn btn-secondary">
-                  View Projects
-                </a>
               </div>
             </div>
           </div>
@@ -211,52 +259,137 @@ export default function Portfolio() {
       {/* About Section */}
       <section id="about" className="about-section">
         <div className="container">
-          <h2 className="section-title">About Me</h2>
+          <h2 className="section-title">ABOUT ME</h2>
 
-          {/* Skills */}
-          <div className="skills-container">
-            <div className="skills-column">
-              <h3 className="skills-title">
-                <span className="icon">💻</span>
-                Hard Skills
-              </h3>
-              <div className="skill-category">
-                <h4 className="skill-category-title">Programming Languages</h4>
-                <div className="skill-tags">
-                  <span className="skill-tag blue">Python</span>
-                  <span className="skill-tag blue">Java</span>
-                  <span className="skill-tag blue">C++</span>
-                  <span className="skill-tag blue">C#</span>
-                  <span className="skill-tag blue">JavaScript</span>
-                  <span className="skill-tag blue">Flutter</span>
-                  <span className="skill-tag blue">Embedded C</span>
-                </div>
+          <div className="about-content">
+            <div className="education-info">
+              <div className="education-card">
+                <h3 className="education-school">Christ Vidyanikethan</h3>
+                <p className="education-grade">ICSE - 94% | ISC - 92%</p>
+                <p className="education-description">Secondary & Higher Secondary Education</p>
               </div>
-              <div className="skill-category">
-                <h4 className="skill-category-title">Web Technologies</h4>
-                <div className="skill-tags">
-                  <span className="skill-tag green">HTML</span>
-                  <span className="skill-tag green">CSS</span>
-                  <span className="skill-tag green">JavaScript</span>
-                  <span className="skill-tag green">React</span>
-                  <span className="skill-tag green">Node.js</span>
-                </div>
+              <div className="education-card">
+                <h3 className="education-school">Christ University</h3>
+                <p className="education-degree">Bachelor of Technology in Computer Science Engineering</p>
+                <p className="education-honors">Honours in Cyber Security</p>
+                <p className="education-cgpa">CGPA - 8.7/10 (2022-2026)</p>
               </div>
-              <div className="skill-category">
-                <h4 className="skill-category-title">Cybersecurity Tools</h4>
-                <div className="skill-tags">
-                  <span className="skill-tag red">Metasploit</span>
-                  <span className="skill-tag red">Wireshark</span>
-                  <span className="skill-tag red">Nmap</span>
+            </div>
+
+            <div className="services-grid">
+              <div className="service-card">
+                <div className="service-icon">💻</div>
+                <h3 className="service-title">DEVELOPMENT</h3>
+                <p className="service-description">
+                  Full-stack development with expertise in modern frameworks, blockchain technology, and IoT solutions.
+                  Experienced in building scalable and secure applications.
+                </p>
+              </div>
+
+              <div className="service-card">
+                <div className="service-icon">🛡️</div>
+                <h3 className="service-title">CYBERSECURITY</h3>
+                <p className="service-description">
+                  Specialized in cybersecurity with hands-on experience in penetration testing, social engineering
+                  awareness, and security system implementation.
+                </p>
+              </div>
+
+              <div className="service-card">
+                <div className="service-icon">🔧</div>
+                <h3 className="service-title">INNOVATION</h3>
+                <p className="service-description">
+                  Patent holder with a passion for creating innovative solutions that solve real-world problems and
+                  improve user experiences.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="skills-section">
+        <div className="container">
+          <h2 className="section-title">SKILLS</h2>
+
+          <div className="skills-content">
+            <div className="skills-category">
+              <h3 className="skills-category-title">PROGRAMMING LANGUAGES</h3>
+              <div className="skills-grid">
+                <div className="skill-item">
+                  <div className="skill-icon python">PY</div>
+                  <span className="skill-name">PYTHON</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-icon java">JAVA</div>
+                  <span className="skill-name">JAVA</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-icon cpp">C++</div>
+                  <span className="skill-name">C++</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-icon csharp">C#</div>
+                  <span className="skill-name">C#</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-icon js">JS</div>
+                  <span className="skill-name">JAVASCRIPT</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-icon flutter">FL</div>
+                  <span className="skill-name">FLUTTER</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-icon embedded">EC</div>
+                  <span className="skill-name">EMBEDDED C</span>
                 </div>
               </div>
             </div>
 
-            <div className="skills-column">
-              <h3 className="skills-title">
-                <span className="icon">🛡️</span>
-                Soft Skills
-              </h3>
+            <div className="skills-category">
+              <h3 className="skills-category-title">WEB TECHNOLOGIES</h3>
+              <div className="skills-grid">
+                <div className="skill-item">
+                  <div className="skill-icon html5">HTML5</div>
+                  <span className="skill-name">HTML5</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-icon css3">CSS3</div>
+                  <span className="skill-name">CSS3</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-icon react">⚛</div>
+                  <span className="skill-name">REACT</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-icon nodejs">NODE</div>
+                  <span className="skill-name">NODE.JS</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="skills-category">
+              <h3 className="skills-category-title">CYBERSECURITY TOOLS</h3>
+              <div className="skills-grid">
+                <div className="skill-item">
+                  <div className="skill-icon metasploit">MSF</div>
+                  <span className="skill-name">METASPLOIT</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-icon wireshark">WS</div>
+                  <span className="skill-name">WIRESHARK</span>
+                </div>
+                <div className="skill-item">
+                  <div className="skill-icon nmap">NMAP</div>
+                  <span className="skill-name">NMAP</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="skills-category">
+              <h3 className="skills-category-title">SOFT SKILLS</h3>
               <div className="soft-skills-grid">
                 <div className="soft-skill-item">Observation</div>
                 <div className="soft-skill-item">Decision Making</div>
@@ -266,82 +399,54 @@ export default function Portfolio() {
               </div>
             </div>
           </div>
-
-          {/* Education */}
-          <div className="education-section">
-            <h3 className="education-title">
-              <span className="icon">🎓</span>
-              Education Background
-            </h3>
-            <div className="education-grid">
-              <div className="education-card">
-                <h4 className="education-school">Christ Vidyanikethan</h4>
-                <p className="education-grade">ICSE - 94% | ISC - 92%</p>
-                <p className="education-description">Secondary & Higher Secondary Education</p>
-              </div>
-              <div className="education-card">
-                <h4 className="education-school">Christ University</h4>
-                <p className="education-degree">Bachelor of Technology in Computer Science Engineering</p>
-                <p className="education-honors">Honours in Cyber Security</p>
-                <p className="education-cgpa">CGPA - 8.7/10</p>
-                <p className="education-years">2022-2026</p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* Experience Section */}
       <section id="experience" className="experience-section">
         <div className="container">
-          <h2 className="section-title">Professional Experience</h2>
+          <h2 className="section-title">PROFESSIONAL EXPERIENCE</h2>
 
-          <div className="experience-list">
-            <div className="experience-card">
-              <div className="experience-header">
-                <div className="experience-info">
-                  <h3 className="experience-title">Full Stack Developer</h3>
-                  <p className="experience-company">CGI Inc, Bangalore</p>
-                </div>
-                <span className="experience-date blue-badge">May 2025</span>
+          <div className="experience-timeline">
+            <div className="experience-item">
+              <div className="experience-date">May 2025</div>
+              <div className="experience-content">
+                <h3 className="experience-title">Full Stack Developer</h3>
+                <p className="experience-company">CGI Inc, Bangalore</p>
+                <ul className="experience-duties">
+                  <li>Full Stack Development of ASOP Dashboard</li>
+                </ul>
               </div>
-              <ul className="experience-duties">
-                <li>Full Stack Development of ASOP Dashboard</li>
-              </ul>
             </div>
 
-            <div className="experience-card">
-              <div className="experience-header">
-                <div className="experience-info">
-                  <h3 className="experience-title">Quality Analyst Intern</h3>
-                  <p className="experience-company">HTIC Global, Kochi, Kerala</p>
-                </div>
-                <span className="experience-date green-badge">May 2024</span>
+            <div className="experience-item">
+              <div className="experience-date">May 2024</div>
+              <div className="experience-content">
+                <h3 className="experience-title">Quality Analyst Intern</h3>
+                <p className="experience-company">HTIC Global, Kochi, Kerala</p>
+                <ul className="experience-duties">
+                  <li>Manual Testing of HRMS website</li>
+                  <li>Automation Testing of HRMS website using Java and Selenium</li>
+                </ul>
               </div>
-              <ul className="experience-duties">
-                <li>Manual Testing of HRMS website</li>
-                <li>Automation Testing of HRMS website using Java and Selenium</li>
-              </ul>
             </div>
           </div>
 
-          {/* Achievements */}
           <div className="achievements-section">
-            <h3 className="achievements-title">
-              <span className="icon">🏆</span>
-              Achievements
-            </h3>
-            <div className="achievement-card">
-              <p className="achievement-text">
-                <span className="achievement-highlight">Meritorious Scholarship</span> from Christ University for
-                outstanding academic performance (May 2024)
-              </p>
-            </div>
-            <div className="achievement-card1">
-              <p className="achievement-text1">
-                <span className="achievement-highlight">Meritorious Scholarship</span> from Christ University for
-                outstanding academic performance (May 2025)
-              </p>
+            <h3 className="achievements-title">🏆 ACHIEVEMENTS</h3>
+            <div className="achievements-grid">
+              <div className="achievement-card">
+                <p className="achievement-text">
+                  <span className="achievement-highlight">Meritorious Scholarship</span> from Christ University for
+                  outstanding academic performance (May 2024)
+                </p>
+              </div>
+              <div className="achievement-card">
+                <p className="achievement-text">
+                  <span className="achievement-highlight">Meritorious Scholarship</span> from Christ University for
+                  outstanding academic performance (May 2025)
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -350,7 +455,7 @@ export default function Portfolio() {
       {/* Projects Section */}
       <section id="projects" className="projects-section">
         <div className="container">
-          <h2 className="section-title">Projects</h2>
+          <h2 className="section-title">PROJECTS</h2>
 
           <div className="projects-grid">
             <div className="project-card purple" onClick={() => openModal("decentralized-vpn")}>
@@ -478,7 +583,7 @@ export default function Portfolio() {
       {/* Certifications Section */}
       <section className="certifications-section">
         <div className="container">
-          <h2 className="section-title">Certifications</h2>
+          <h2 className="section-title">CERTIFICATIONS</h2>
 
           <div className="certifications-grid">
             <div className="certification-card">
@@ -508,70 +613,76 @@ export default function Portfolio() {
       {/* Contact Section */}
       <section id="contact" className="contact-section">
         <div className="container">
-          <h2 className="section-title">Get In Touch</h2>
+          <h2 className="section-title">CONTACT</h2>
 
           <div className="contact-content">
             <div className="contact-info">
-              <h3 className="contact-title">Contact Information</h3>
-              <div className="contact-list">
-                <div className="contact-item">
-                  <span className="contact-icon">📧</span>
-                  <div className="contact-details">
-                    <p className="contact-label">Email</p>
-                    <a href="mailto:febikaji.ijk@gmail.com" className="contact-link">
-                      febikaji.ijk@gmail.com
-                    </a>
-                  </div>
-                </div>
+              <p className="contact-description">
+                A motivated Computer Science Engineering graduate specializing in cybersecurity, ready to contribute to
+                innovative projects and technological advancement.
+              </p>
+            </div>
 
-                <div className="contact-item">
-                  <span className="contact-icon">📱</span>
-                  <div className="contact-details">
-                    <p className="contact-label">Phone</p>
-                    <a href="tel:+916238948441" className="contact-link">
-                      +91 6238948441
-                    </a>
-                  </div>
+            <div className="contact-details-grid">
+              <div className="contact-item">
+                <span className="contact-icon">📧</span>
+                <div className="contact-details">
+                  <p className="contact-label">Email</p>
+                  <a href="mailto:febikaji.ijk@gmail.com" className="contact-link">
+                    febikaji.ijk@gmail.com
+                  </a>
                 </div>
+              </div>
 
-                <div className="contact-item">
-                  <span className="contact-icon">📍</span>
-                  <div className="contact-details">
-                    <p className="contact-label">Address</p>
-                    <p className="contact-address">
-                      Kottinickal House, Christ College Road
-                      <br />
-                      Irinjalakuda, Kerala
-                    </p>
-                  </div>
+              <div className="contact-item">
+                <span className="contact-icon">📱</span>
+                <div className="contact-details">
+                  <p className="contact-label">Phone</p>
+                  <a href="tel:+916238948441" className="contact-link">
+                    +91 6238948441
+                  </a>
                 </div>
-                <div className="contact-item">
-                  <span className="contact-icon">💻</span>
-                  <div className="contact-details">
-                    <p className="contact-label">GitHub</p>
-                    <a
-                      href="https://github.com/febikaji16"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="contact-link"
-                    >
-                      View my repositories →
-                    </a>
-                  </div>
+              </div>
+
+              <div className="contact-item">
+                <span className="contact-icon">📍</span>
+                <div className="contact-details">
+                  <p className="contact-label">Address</p>
+                  <p className="contact-address">
+                    Kottinickal House, Christ College Road
+                    <br />
+                    Irinjalakuda, Kerala
+                  </p>
                 </div>
-                <div className="contact-item">
-                  <span className="contact-icon">💼</span>
-                  <div className="contact-details">
-                    <p className="contact-label">LinkedIn</p>
-                    <a
-                      href="https://www.linkedin.com/in/febi-k-aji-a54150281"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="contact-link"
-                    >
-                      Connect with me →
-                    </a>
-                  </div>
+              </div>
+
+              <div className="contact-item">
+                <span className="contact-icon">💻</span>
+                <div className="contact-details">
+                  <p className="contact-label">GitHub</p>
+                  <a
+                    href="https://github.com/febikaji16"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-link"
+                  >
+                    View my repositories →
+                  </a>
+                </div>
+              </div>
+
+              <div className="contact-item">
+                <span className="contact-icon">💼</span>
+                <div className="contact-details">
+                  <p className="contact-label">LinkedIn</p>
+                  <a
+                    href="https://www.linkedin.com/in/febi-k-aji-a54150281"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-link"
+                  >
+                    Connect with me →
+                  </a>
                 </div>
               </div>
             </div>
@@ -583,10 +694,12 @@ export default function Portfolio() {
       <footer className="footer">
         <div className="container">
           <div className="footer-content">
-            <p> 2025 Febi K Aji. All rights reserved.</p>
+            
+            <p className="footer-text">© 2025 Febi K Aji. All Rights Reserved.</p>
           </div>
         </div>
       </footer>
+
       {/* Project Modal */}
       {selectedProject && (
         <div className="modal-overlay" onClick={closeModal}>
