@@ -545,7 +545,20 @@ export default function Portfolio() {
                     </p>
                   </div>
                 </div>
-
+                <div className="contact-item">
+                  <span className="contact-icon">💻</span>
+                  <div className="contact-details">
+                    <p className="contact-label">GitHub</p>
+                    <a
+                      href="https://github.com/febikaji16"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="contact-link"
+                    >
+                      View my repositories →
+                    </a>
+                  </div>
+                </div>
                 <div className="contact-item">
                   <span className="contact-icon">💼</span>
                   <div className="contact-details">
