@@ -272,7 +272,7 @@ export default function Portfolio() {
                 <h3 className="education-school">Christ University</h3>
                 <p className="education-degree">Bachelor of Technology in Computer Science Engineering</p>
                 <p className="education-honors">Honours in Cyber Security</p>
-                <p className="education-cgpa">CGPA - 8.7/10 (2022-2026)</p>
+                <p className="education-cgpa">CGPA - 9.75/10 (2022-2026)</p>
               </div>
             </div>
 
